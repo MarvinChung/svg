@@ -1,11 +1,9 @@
 import os
 import io
-from scipy.misc import imresize 
 import numpy as np
 from PIL import Image
-from scipy.misc import imresize
-from scipy.misc import imread 
-
+# from scipy.misc import imread 
+import cv2
 
 class RobotPush(object):
     
@@ -48,7 +46,7 @@ class RobotPush(object):
         image_seq = []
         for i in range(self.seq_len):
             fname = '%s/%d.png' % (d, i)
-            im = imread(fname).reshape(1, 64, 64, 3)
+            im = cv2.imread(fname).reshape(1, 64, 64, 3)
             image_seq.append(im/255.)
         image_seq = np.concatenate(image_seq, axis=0)
         return image_seq
